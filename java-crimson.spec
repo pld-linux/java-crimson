@@ -14,7 +14,7 @@ Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javalibdir	/usr/share/java
+%define		_javalibdir	%{_datadir}/java
 
 %description
 This version of Crimson supports the Java API for XML Processing
@@ -47,7 +47,7 @@ Crimson, implementacja JAXP - dokumentacja.
 
 %build
 if [ "-z $JAVA_HOME" ]; then
-	JAVA_HOME=/usr/lib/java
+	JAVA_HOME=%{_libdir}/java
 fi
 
 ant jars docs %{!?debug:-Ddebug=off -Doptimize=true}
