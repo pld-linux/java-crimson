@@ -6,6 +6,7 @@ Release:	1
 License:	Apache/W3C/Public Domain
 Group:		Development/Languages/Java
 Source0:	http://xml.apache.org/dist/crimson/%{name}-%{version}-src.tar.gz
+# Source0-md5:	bb0a5fe59fd28ce5bfc4b22baeca12c1
 URL:		http://xml.apache.org/crimson/
 BuildRequires:	jakarta-ant >= 1.3
 BuildRequires:	jdk
