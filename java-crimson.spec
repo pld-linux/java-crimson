@@ -1,5 +1,5 @@
 Summary:	Crimson - Java API for XML Processing (JAXP)
-Summary(pl.UTF-8):   Crimson - API Javy do przetwarzania XML-a (JAXP)
+Summary(pl.UTF-8):	Crimson - API Javy do przetwarzania XML-a (JAXP)
 Name:		crimson
 Version:	1.1.3
 Release:	1
@@ -33,7 +33,7 @@ obsługiwana. Jedną z implementacji tej hierarchii jest Xalan 2.
 
 %package doc
 Summary:	Crimson JAXP implementation - documentation
-Summary(pl.UTF-8):   Crimson, implementacja JAXP - dokumentacja
+Summary(pl.UTF-8):	Crimson, implementacja JAXP - dokumentacja
 Group:		Development/Languages/Java
 
 %description doc
