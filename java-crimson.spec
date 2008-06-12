@@ -11,6 +11,7 @@ URL:		http://xml.apache.org/crimson/
 BuildRequires:	ant >= 1.3
 BuildRequires:	jakarta-commons-net
 BuildRequires:	jdk
+Requires:	jakarta-commons-net
 Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
