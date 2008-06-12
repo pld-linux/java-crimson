@@ -2,13 +2,14 @@ Summary:	Crimson - Java API for XML Processing (JAXP)
 Summary(pl.UTF-8):	Crimson - API Javy do przetwarzania XML-a (JAXP)
 Name:		crimson
 Version:	1.1.3
-Release:	1
+Release:	2
 License:	Apache/W3C/Public Domain
 Group:		Development/Languages/Java
 Source0:	http://xml.apache.org/dist/crimson/%{name}-%{version}-src.tar.gz
 # Source0-md5:	bb0a5fe59fd28ce5bfc4b22baeca12c1
 URL:		http://xml.apache.org/crimson/
 BuildRequires:	ant >= 1.3
+BuildRequires:	jakarta-commons-net
 BuildRequires:	jdk
 Requires:	jre
 BuildArch:	noarch
@@ -46,11 +47,10 @@ Crimson, implementacja JAXP - dokumentacja.
 %setup -q
 
 %build
-if [ "-z $JAVA_HOME" ]; then
-	JAVA_HOME=%{_libdir}/java
-fi
+export CLASSPATH="`build-classpath commons-net`"
+export JAVA_HOME="%{java_home}"
 
-ant jars docs %{!?debug:-Ddebug=off -Doptimize=true}
+%ant jars docs %{!?debug:-Ddebug=off -Doptimize=true}
 
 %install
 rm -rf $RPM_BUILD_ROOT
