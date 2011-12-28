@@ -1,6 +1,7 @@
+# From homepage: 2010/08/06 - Apache Crimson has been retired.
 Summary:	Crimson - Java API for XML Processing (JAXP)
 Summary(pl.UTF-8):	Crimson - API Javy do przetwarzania XML-a (JAXP)
-Name:		crimson
+Name:		java-crimson
 Version:	1.1.3
 Release:	2
 License:	Apache/W3C/Public Domain
@@ -9,14 +10,16 @@ Source0:	http://xml.apache.org/dist/crimson/%{name}-%{version}-src.tar.gz
 # Source0-md5:	bb0a5fe59fd28ce5bfc4b22baeca12c1
 URL:		http://xml.apache.org/crimson/
 BuildRequires:	ant >= 1.3
-BuildRequires:	jakarta-commons-net
+BuildRequires:	java-commons-net
 BuildRequires:	jdk
-Requires:	jakarta-commons-net
-Requires:	jre
+BuildRequires:	jpackage-utils
+BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	java-commons-net
+Requires:	jpackage-utils
+Provides:	java(jaxp_transform_impl)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_javalibdir	%{_datadir}/java
 
 %description
 This version of Crimson supports the Java API for XML Processing
@@ -36,7 +39,7 @@ obsługiwana. Jedną z implementacji tej hierarchii jest Xalan 2.
 %package doc
 Summary:	Crimson JAXP implementation - documentation
 Summary(pl.UTF-8):	Crimson, implementacja JAXP - dokumentacja
-Group:		Development/Languages/Java
+Group:		Documentation
 
 %description doc
 Crimson JAXP implementation - documentation.
@@ -48,16 +51,13 @@ Crimson, implementacja JAXP - dokumentacja.
 %setup -q
 
 %build
-export CLASSPATH="`build-classpath commons-net`"
-export JAVA_HOME="%{java_home}"
-
+CLASSPATH=$(build-classpath commons-net)
 %ant jars docs %{!?debug:-Ddebug=off -Doptimize=true}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_javalibdir}
-
-install build/*.jar $RPM_BUILD_ROOT%{_javalibdir}
+install -d $RPM_BUILD_ROOT%{_javadir}
+cp -a build/*.jar $RPM_BUILD_ROOT%{_javadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README.txt
-%{_javalibdir}/*.jar
+%{_javadir}/*.jar
 
 %files doc
 %defattr(644,root,root,755)
